@@ -143,7 +143,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Gems.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Frame.h" />
+    <ClInclude Include="Gem.h" />
+    <ClInclude Include="Grid.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
