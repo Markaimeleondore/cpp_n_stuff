@@ -11,3 +11,5 @@ public:
 	int x_position() { return rect->getPosition().x / size; }
 	int y_position() { return rect->getPosition().y / size; }
 };
+
+

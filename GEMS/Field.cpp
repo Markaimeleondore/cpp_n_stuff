@@ -1,5 +1,4 @@
 #include "Field.h"
-#include "Queue"
 #include "Set"
 using namespace std;
 
@@ -25,7 +24,7 @@ void Field::fulfill()
 				grid[i][j].rect->setFillColor(sf::Color::Cyan);
 				break;
 			case 4:
-				grid[i][j].rect->setFillColor(sf::Color::Black);
+				grid[i][j].rect->setFillColor(sf::Color::Magenta);
 				break;
 			case 5:
 				grid[i][j].rect->setFillColor(sf::Color::Yellow);
@@ -38,6 +37,7 @@ void Field::fulfill()
 
 void Field::check_matches()
 {
+	score = 0;
 	for (int i = 1; i <= field_size; i++)
 	{
 		for (int j = 1; j <= field_size; j++)
@@ -80,12 +80,11 @@ void Field::check_matches()
 				{
 					if (on_delete.size() >= 3)
 					{
-					grid[ids.first][ids.second].rect->setFillColor(sf::Color::White);
+						grid[ids.first][ids.second].rect->setFillColor(sf::Color::White);
+						score += 1;
 					}
 					grid[ids.first][ids.second].match_counter = 0;
 				}
-			
-	
 		}
 	}
 }
@@ -98,7 +97,7 @@ void Field::draw()
 		{
 			game.draw(*grid[i][j].rect);
 		}
-		sf::sleep(sf::seconds(0.005f));
+		sf::sleep(sf::seconds(0.002f));
 	}
 }
 
@@ -139,7 +138,27 @@ void Field::change_positions(int x_fs, int y_fs, int x_sc, int y_sc)
 		game.draw(*grid[x_fs][y_fs].rect);
 		game.draw(*grid[x_sc][y_sc].rect);
 		game.display();
-		sf::sleep(sf::seconds(0.2f));
+		sf::sleep(sf::seconds(0.002f));
+	}
+	check_matches();
+	if(score)
+	{
+		if (rand() % 3)
+		{
+			int add2x = (x_fs >= field_size / 2) ? -(rand() % 3 + 1) : (rand() % 3 + 1);
+			int add2y = (y_fs >= field_size / 2) ? -(rand() % 3 + 1) : (rand() % 3 + 1);
+			if (rand() % 2)
+			{
+				my_girlfriend.set_position(x_sc + add2x, y_sc + add2y);
+				my_girlfriend.action(game, grid);
+
+			}
+			else
+			{
+				anti_tolerance.set_position(x_fs + add2x, y_fs + add2y);
+				anti_tolerance.action(game, grid);
+			}
+		}
 	}
 }
 
@@ -192,9 +211,9 @@ void Field::repair_gems()
 {
 	for (int i = 1; i <= field_size; i++)
 	{
-		int k = 1;
+		int it = 1;
 
-		while (grid[i][k].rect->getFillColor() == sf::Color::White && k <= field_size) 
+		while (grid[i][it].rect->getFillColor() == sf::Color::White && it <= field_size)
 		{
 			sf::Color tmp;
 			switch (rand() % 6)
@@ -212,19 +231,19 @@ void Field::repair_gems()
 				tmp = sf::Color::Cyan;
 				break;
 			case 4:
-				tmp = sf::Color::Black;
+				tmp = sf::Color::Magenta;
 				break;
 			case 5:
 				tmp = sf::Color::Yellow;
 				break;
 			}
-			if (k == 1) 
+			if (it == 1)
 			{
-				grid[i][k].rect->setFillColor(tmp);
+				grid[i][it].rect->setFillColor(tmp);
 			}
 			else 
 			{
-				for(int j = k; j >= 2; j--)
+				for(int j = it; j >= 2; j--)
 				{
 					sf::Color cur = grid[i][j - 1].rect->getFillColor();
 					grid[i][j].rect->setFillColor(cur);
@@ -235,8 +254,8 @@ void Field::repair_gems()
 					game.display();
 				}
 			}
-			sf::sleep(sf::seconds(0.001f));
-			k++;
+			sf::sleep(sf::seconds(0.007f));
+			it++;
 		}
 	}
 }

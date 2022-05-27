@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bonus.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="GEMS.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bonus.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Gem.h" />
   </ItemGroup>

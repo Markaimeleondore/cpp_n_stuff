@@ -1,5 +1,6 @@
 #pragma once
 #include "Gem.h"
+#include "Bonus.h"
 constexpr int field_size{ 8 };
 constexpr int gem_size{ 54 };
 
@@ -11,7 +12,10 @@ class Field
 	void draw();
 	void change_positions(int x_fs, int y_fs, int x_sc, int y_sc);
 	void check_matches();
+	int score = 0;
 public:
+	Color_changer anti_tolerance;
+	Bomb my_girlfriend;
 	Gem grid[field_size + 2][field_size + 2];
 	
 	sf::RenderWindow game{ {740, 640}, "GEMS" };
