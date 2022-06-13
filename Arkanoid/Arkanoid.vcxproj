@@ -142,11 +142,14 @@
     <ClCompile Include="Arkanoid.cpp" />
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Bonus.cpp" />
+    <ClCompile Include="Game_manager.cpp" />
     <ClCompile Include="platform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="Bonus.h" />
     <ClInclude Include="Game_manager.h" />
     <ClInclude Include="platform.h" />
     <ClInclude Include="Rectangle_shaped_objects.h" />

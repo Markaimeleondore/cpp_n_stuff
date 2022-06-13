@@ -14,7 +14,7 @@ void Platform::hold_inside_the_window_while_moving(int window_width)
 
 void Platform::widen()
 {
-	width += 40.f; 
+	width += 10.f; 
 	rect.setSize({ width, height }); 
 	rect.setOrigin(width / 2.f, height / 2.f);
 }

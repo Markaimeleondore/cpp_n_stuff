@@ -9,6 +9,5 @@ void Ball::hold_inside_the_window_while_moving(unsigned int height, unsigned int
 		xy_velocity.x = -speed;
 	if (get_top() <= 0)
 		xy_velocity.y = speed;
-	else if(get_bottom() >= height)
-		xy_velocity.y = -speed;
+	
 }

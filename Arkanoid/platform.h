@@ -1,6 +1,6 @@
 #pragma once
 #include "Rectangle_shaped_objects.h"
-constexpr float platform_width{100.f}, platform_height{20.f};
+constexpr float platform_width{200.f}, platform_height{18.f};
 
 class Platform : public Rectange_shaped_objects
 {
